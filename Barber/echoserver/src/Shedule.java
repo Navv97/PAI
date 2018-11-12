@@ -7,6 +7,10 @@ public class Shedule {
         reservedVisits.put(clientName,hour);
     }
 
+    public void cancelVisit(String clientName, Integer hour){
+        reservedVisits.remove(clientName,hour);
+    }
+
     public ConcurrentHashMap<String, Integer> getReservedVisits() {
         return reservedVisits;
     }

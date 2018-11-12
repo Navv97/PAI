@@ -8,6 +8,7 @@ public class MultiClient extends Thread{
     private Socket clientSocket;
     private BufferedReader input;
     private PrintWriter output;
+    private Shedule shedule = new Shedule();
 
     public MultiClient(Socket socket){
         this.clientSocket = socket;
@@ -15,12 +16,48 @@ public class MultiClient extends Thread{
 
     public void run(){
         try{
+            output = new PrintWriter(clientSocket.getOutputStream(), true);
+            output.println("Welcome to the barber shop!");
             while (true) {
                 output = new PrintWriter(clientSocket.getOutputStream(), true);
                 input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                String stringFromInput = input.readLine();
-                output.println(stringFromInput);
-                if (stringFromInput.equalsIgnoreCase("bye")) {
+
+                output.println("How may I help you? 1.Shedule a visit, 2.Cancel a visit, 3.Check availability.");
+
+                String clientChoice = input.readLine();
+                Integer parseClientChoice = Integer.parseInt(clientChoice);
+                System.out.println(parseClientChoice);
+
+                String clientName;
+                String hour;
+                Integer parseHour;
+
+                switch (parseClientChoice){
+                    case 1:
+                        output.println("Enter your name.");
+                        clientName = input.readLine();
+                        output.println("Enter hour.");
+                        hour = input.readLine();
+                        parseHour = Integer.parseInt(hour);
+                        System.out.println(clientName + " " + parseHour);
+                        break;
+                    case 2:
+                        output.println("Enter your name.");
+                        clientName = input.readLine();
+                        output.println("Enter hour.");
+                        hour = input.readLine();
+                        parseHour = Integer.parseInt(hour);
+                        System.out.println(clientName + " " + parseHour);
+                        break;4
+                    case 3:
+                        output.println("Availability");
+                        break;
+                    default:
+                        output.println("Bye");
+                        break;
+                }
+
+                if (parseClientChoice > 3 || parseClientChoice <= 0) {
                     input.close();
                     output.close();
                     break;
