@@ -21,18 +21,30 @@ public class Client {
             switch (choice){
                 case 1:
                     System.out.println(input.readLine());
+                    System.out.println(input.readLine());
                     name = scanner.next();
                     output.println(name);
                     System.out.println(input.readLine());
-                    hour = scanner.nextInt();
+                    do {
+                        hour = scanner.nextInt();
+                        if(hour > 18 || hour < 10){
+                            System.out.println("Incorrect hour");
+                        }
+                    } while(hour > 18 || hour < 10);
                     output.println(hour);
                     break;
                 case 2:
                     System.out.println(input.readLine());
+                    System.out.println(input.readLine());
                     name = scanner.next();
                     output.println(name);
                     System.out.println(input.readLine());
-                    hour = scanner.nextInt();
+                    do {
+                        hour = scanner.nextInt();
+                        if(hour > 18 || hour < 10){
+                            System.out.println("Incorrect hour");
+                        }
+                    } while(hour > 18 || hour < 10);
                     output.println(hour);
                     break;
                 case 3:

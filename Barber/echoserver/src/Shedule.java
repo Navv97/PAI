@@ -1,17 +1,20 @@
-import java.util.concurrent.ConcurrentHashMap;
-
 public class Shedule {
-    private ConcurrentHashMap<String,Integer> reservedVisits = new ConcurrentHashMap<>();
+    private String test = " ";
 
     public void addVisit(String clientName, Integer hour){
-        reservedVisits.put(clientName,hour);
+        Server.reservedVisits.put(clientName,hour);
     }
 
     public void cancelVisit(String clientName, Integer hour){
-        reservedVisits.remove(clientName,hour);
+        Server.reservedVisits.remove(clientName,hour);
     }
 
-    public ConcurrentHashMap<String, Integer> getReservedVisits() {
-        return reservedVisits;
+    public String getReservedVisits() {
+        Server.reservedVisits.forEach((key, value) -> {
+//            System.out.println("Hour taken: " + value);
+            test = test + " " + value;
+        });
+        System.out.println(test);
+        return test;
     }
 }
