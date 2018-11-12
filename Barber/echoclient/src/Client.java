@@ -12,8 +12,9 @@ public class Client {
         while (true) {
             inputLine = scanner.nextLine();
             output.println(inputLine);
-            System.out.println("Server: " + inputLine);
-            if(inputLine.equalsIgnoreCase("bye")){
+            String response = input.readLine();
+            System.out.println("Server: " + response);
+            if(response.equalsIgnoreCase("bye")){
                 break;
             }
         }

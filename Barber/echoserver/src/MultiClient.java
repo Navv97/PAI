@@ -15,11 +15,11 @@ public class MultiClient extends Thread{
 
     public void run(){
         try{
-            output.println("Witam");
             while (true) {
                 output = new PrintWriter(clientSocket.getOutputStream(), true);
                 input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String stringFromInput = input.readLine();
+                output.println(stringFromInput);
                 if (stringFromInput.equalsIgnoreCase("bye")) {
                     input.close();
                     output.close();
