@@ -34,24 +34,26 @@ public class MultiClient extends Thread{
 
                 switch (parseClientChoice){
                     case 1:
-                        output.println("Hours taken:" + shedule.getReservedVisits());
+                        output.println(shedule.getReservedVisits());
                         output.println("Enter your name.");
                         clientName = input.readLine();
                         output.println("Enter hour, between 10 - 18.");
                         hour = input.readLine();
                         parseHour = Integer.parseInt(hour);
-                        System.out.println(clientName + " " + parseHour);
+//                        System.out.println(clientName + " " + parseHour);
                         shedule.addVisit(clientName,parseHour);
+                        shedule.getReservedVisits();
                         break;
                     case 2:
-                        output.println("Hours taken:" + shedule.getReservedVisits());
+//                        output.println("Hours taken:" + shedule.getReservedVisits());
                         output.println("Enter your name.");
                         clientName = input.readLine();
                         output.println("Enter hour, between 10 - 18.");
                         hour = input.readLine();
                         parseHour = Integer.parseInt(hour);
-                        System.out.println(clientName + " " + parseHour);
+//                        System.out.println(clientName + " " + parseHour);
                         shedule.cancelVisit(clientName,parseHour);
+                        shedule.getReservedVisits();
                         break;
                     case 3:
                         output.println("Hours taken:" + shedule.getReservedVisits());
