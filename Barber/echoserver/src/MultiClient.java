@@ -8,7 +8,7 @@ public class MultiClient extends Thread{
     private Socket clientSocket;
     private BufferedReader input;
     private PrintWriter output;
-    private Shedule shedule = new Shedule();
+    private Shedule shedule = Shedule.getIstance();
 
     public MultiClient(Socket socket){
         this.clientSocket = socket;
@@ -40,23 +40,26 @@ public class MultiClient extends Thread{
                         output.println("Enter hour, between 10 - 18.");
                         hour = input.readLine();
                         parseHour = Integer.parseInt(hour);
-//                        System.out.println(clientName + " " + parseHour);
-                        shedule.addVisit(clientName,parseHour);
-                        shedule.getReservedVisits();
+                        if (shedule.checkScheduleStatus(parseHour)) {
+                            shedule.addVisit(clientName, parseHour);
+                            output.println("Visit set");
+                        } else {
+                            output.println("Visit not set");
+                        }
+                        output.println(shedule.getReservedVisits());
                         break;
                     case 2:
-//                        output.println("Hours taken:" + shedule.getReservedVisits());
+                        output.println(shedule.getReservedVisits());
                         output.println("Enter your name.");
                         clientName = input.readLine();
                         output.println("Enter hour, between 10 - 18.");
                         hour = input.readLine();
                         parseHour = Integer.parseInt(hour);
-//                        System.out.println(clientName + " " + parseHour);
                         shedule.cancelVisit(clientName,parseHour);
-                        shedule.getReservedVisits();
+                        output.println(shedule.getReservedVisits());
                         break;
                     case 3:
-                        output.println("Hours taken:" + shedule.getReservedVisits());
+                        output.println(shedule.getReservedVisits());
                         break;
                     default:
                         output.println("Bye");
