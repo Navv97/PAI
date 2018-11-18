@@ -8,10 +8,10 @@ public class ServerClient{
 
     public ServerClient(Socket serverSocket) throws IOException{
         this.serverSocket = serverSocket;
-        this.read = new Read(serverSocket);
-        read.start();
-        this.write = new Write(serverSocket);
+        this.write = new Write(this.serverSocket);
         write.start();
+        this.read = new Read(this.serverSocket);
+        read.start();
     }
 
 }

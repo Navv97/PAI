@@ -6,9 +6,9 @@ public class Client {
 
     public Client(Socket clientSocket) throws IOException{
         this.clientSocket = clientSocket;
-        Read read = new Read(clientSocket);
-        read.start();
         Write write = new Write(clientSocket);
         write.start();
+        Read read = new Read(clientSocket);
+        read.start();
     }
 }

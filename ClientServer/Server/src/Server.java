@@ -6,7 +6,7 @@ public class Server {
         ServerSocket serverSocket = new ServerSocket(8888);
         try {
             while (true) {
-                ServerClient serverClient = new ServerClient(serverSocket.accept());
+                new ServerClient(serverSocket.accept());
             }
         }finally {
             serverSocket.close();

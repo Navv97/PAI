@@ -11,7 +11,7 @@ public class Read extends Thread {
 
     public Read(Socket serverSocket) throws IOException{
         this.serverSocket = serverSocket;
-        this.input = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+        this.input = new BufferedReader(new InputStreamReader(this.serverSocket.getInputStream()));
     }
 
     public void run(){

@@ -9,11 +9,12 @@ public class Read extends Thread {
 
     public Read(Socket clientSocket) throws IOException{
         this.clientSocket = clientSocket;
-        this.input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        this.input = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
     }
 
     public void run(){
         try {
+            System.out.println(input.readLine());
             while ((input.readLine()) != null) {
                 System.out.println(input.readLine());
             }

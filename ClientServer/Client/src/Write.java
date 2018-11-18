@@ -12,13 +12,13 @@ public class Write extends Thread {
 
     public Write(Socket clientSocket) throws IOException{
         this.clientSocket = clientSocket;
-        this.output = new PrintWriter(clientSocket.getOutputStream(), true);
+        this.output = new PrintWriter(this.clientSocket.getOutputStream(), true);
     }
 
     public void run(){
         clientName = scanner.nextLine();
-        output.println(clientName);
         clientHour = scanner.nextInt();
+        output.println(clientName);
         output.println(clientHour);
     }
 }

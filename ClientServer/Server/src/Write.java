@@ -8,11 +8,12 @@ public class Write extends Thread {
 
     public Write(Socket serverSocket) throws IOException{
         this.serverSocket = serverSocket;
-        this.output = new PrintWriter(serverSocket.getOutputStream(), true);
+        this.output = new PrintWriter(this.serverSocket.getOutputStream(), true);
         Shedule.clientList.add(output);
     }
 
     public void run(){
         output.println(Shedule.getIstance().getReservedVisits());
+        Shedule.getIstance().notifyClients();
     }
 }

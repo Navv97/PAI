@@ -1,6 +1,5 @@
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Shedule {
@@ -23,16 +22,7 @@ public class Shedule {
 
     public void addVisit(String clientName, Integer hour){
         reservedVisits.put(clientName,hour);
-        for(int i = 0; i < clientList.size(); i++){
-            clientList.get(i).println(getReservedVisits());
-            clientList.get(i).println("");
-        }
-//        Iterator iterator = clientList.iterator();
-//            while (iterator.hasNext()){
-//                PrintWriter writer = (PrintWriter) iterator.next();
-//                writer.println(getReservedVisits());
-//                writer.flush();
-//            }
+        notifyClients();
     }
 
     public void cancelVisit(String clientName, Integer hour){
@@ -44,6 +34,12 @@ public class Shedule {
         reservedVisits.forEach((key, value) ->
                 stringBuffer.append(value + " "));
         return stringBuffer.toString();
+    }
+
+    public void notifyClients(){
+        for(int i = 0; i < clientList.size(); i++){
+            clientList.get(i).println(getReservedVisits());
+        }
     }
 
 }
