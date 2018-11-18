@@ -1,12 +1,14 @@
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Shedule {
 
     public static final ConcurrentHashMap<String,Integer> reservedVisits = new ConcurrentHashMap<>();
-    public static final ArrayList<PrintWriter> clientList = new ArrayList<>();
+    private final List<PrintWriter> clientList = new ArrayList();
     private static Shedule instance;
+    private static boolean listUpdated = false;
 
     private Shedule(){
     }
@@ -38,9 +40,18 @@ public class Shedule {
 
     public void notifyClients(){
         for(int i = 0; i < clientList.size(); i++){
+            System.out.println("Client id: " + i + " ReservedVisits: " + getReservedVisits() +  "\n");
+ //           clientList.get(i).println("");
             clientList.get(i).println(getReservedVisits());
         }
     }
 
+    public void addClient(PrintWriter client){
+        this.clientList.add(client);
+    }
+
+    public List<PrintWriter> getClientList() {
+        return clientList;
+    }
 }
 

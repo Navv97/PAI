@@ -14,9 +14,9 @@ public class Read extends Thread {
 
     public void run(){
         try {
-            System.out.println(input.readLine());
-            while ((input.readLine()) != null) {
-                System.out.println(input.readLine());
+            String line;
+            while ( (line = input.readLine()) != null) {
+                System.out.println(line);
             }
         }catch (IOException e){
 

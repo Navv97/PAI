@@ -17,8 +17,8 @@ public class Write extends Thread {
 
     public void run(){
         clientName = scanner.nextLine();
-        clientHour = scanner.nextInt();
         output.println(clientName);
+        clientHour = scanner.nextInt();
         output.println(clientHour);
     }
 }
