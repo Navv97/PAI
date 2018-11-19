@@ -6,6 +6,7 @@ public class Write extends Thread {
     private Socket serverSocket;
     private PrintWriter output;
     private Shedule shedule;
+    private int clientIndex;
 
     public Write(Socket serverSocket) throws IOException{
         this.shedule = Shedule.getIstance();

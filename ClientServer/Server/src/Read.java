@@ -8,8 +8,13 @@ public class Read extends Thread {
     private BufferedReader input;
     private String clientName;
     private Integer clientHour;
+    private Shedule shedule;
+    private int clientChoice;
+    private int clientIndex;
 
     public Read(Socket serverSocket) throws IOException{
+        this.shedule = Shedule.getIstance();
+        this.clientIndex = shedule.getClientListSize() - 1;
         this.serverSocket = serverSocket;
         this.input = new BufferedReader(new InputStreamReader(this.serverSocket.getInputStream()));
     }
@@ -18,7 +23,17 @@ public class Read extends Thread {
         try{
             clientName = input.readLine();
             clientHour = Integer.parseInt(input.readLine());
-            Shedule.getIstance().addVisit(clientName,clientHour);
+            clientChoice = Integer.parseInt(input.readLine());
+            switch (clientChoice) {
+                case 1:
+                    shedule.addVisit(clientName, clientHour, this.clientIndex);
+                    break;
+                case 2:
+                    shedule.cancelVisit(clientName, clientHour, this.clientIndex);
+                    break;
+                default:
+                    break;
+            }
         }catch (IOException e){
 
         }

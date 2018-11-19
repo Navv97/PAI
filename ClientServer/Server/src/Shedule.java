@@ -22,13 +22,31 @@ public class Shedule {
         return instance;
     }
 
-    public void addVisit(String clientName, Integer hour){
-        reservedVisits.put(clientName,hour);
-        notifyClients();
+    public int getClientListSize(){
+        return clientList.size();
     }
 
-    public void cancelVisit(String clientName, Integer hour){
-        reservedVisits.remove(clientName,hour);
+    public void addVisit(String clientName, Integer hour, int clientIndex){
+        if(!reservedVisits.containsValue(hour)) {
+            reservedVisits.put(clientName, hour);
+            clientList.get(clientIndex).println("Visit added");
+            notifyClients();
+        }else {
+            clientList.get(clientIndex).println("Visit not added");
+        }
+    }
+
+    public void cancelVisit(String clientName, Integer hour, int clientIndex){
+        if(reservedVisits.containsValue(hour) && reservedVisits.containsKey(clientName)) {
+            int temp = reservedVisits.size();
+            reservedVisits.remove(clientName, hour);
+            if(temp > reservedVisits.size()) {
+                clientList.get(clientIndex).println("Visit cancelled");
+                notifyClients();
+            }
+        }else {
+            clientList.get(clientIndex).println("Visit not cancelled");
+        }
     }
 
     public String getReservedVisits() {
@@ -41,7 +59,6 @@ public class Shedule {
     public void notifyClients(){
         for(int i = 0; i < clientList.size(); i++){
             System.out.println("Client id: " + i + " ReservedVisits: " + getReservedVisits() +  "\n");
- //           clientList.get(i).println("");
             clientList.get(i).println(getReservedVisits());
         }
     }
