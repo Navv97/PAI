@@ -3,14 +3,14 @@ import java.net.Socket;
 
 public class ServerClient{
     private Socket serverSocket;
-    public Read read;
-    public Write write;
+    public Reader read;
+    public Writer write;
 
     public ServerClient(Socket serverSocket) throws IOException{
         this.serverSocket = serverSocket;
-        this.write = new Write(this.serverSocket);
+        this.write = new Writer(this.serverSocket);
         write.start();
-        this.read = new Read(this.serverSocket);
+        this.read = new Reader(this.serverSocket);
         read.start();
     }
 
